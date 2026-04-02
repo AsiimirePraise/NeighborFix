@@ -30,7 +30,7 @@ def create_app() -> Flask:
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from app import models 
+    from app import models  # noqa: F401 — register models with SQLAlchemy
     from app.routes.main import bp as main_bp
 
     app.register_blueprint(main_bp)
@@ -39,15 +39,15 @@ def create_app() -> Flask:
     def not_found(_e):
         return render_template("errors/404.html"), 404
 
-    @app.cli.command("seed-demo")
-    def seed_demo() -> None:
-        """Insert three sample issues when the table is empty (local demo)."""
+    @app.cli.command("seed")
+    def seed() -> None:
+        """Load starter reports when the database is empty (optional; dev or staging)."""
         from app.models.issue import Issue
 
         if Issue.query.count() > 0:
-            click.echo("Issues already exist; nothing to seed.")
+            click.echo("Reports already exist; seed skipped.")
             return
-        samples = [
+        starter_reports = [
             Issue(
                 title="Streetlight out — corner of Maple & 2nd",
                 category="lighting",
@@ -77,8 +77,8 @@ def create_app() -> Flask:
                 status="resolved",
             ),
         ]
-        db.session.add_all(samples)
+        db.session.add_all(starter_reports)
         db.session.commit()
-        click.echo("Seeded 3 demo issues.")
+        click.echo("Starter reports added successfully (3).")
 
     return app
