@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 
 from sqlalchemy import event, func
 
-from app.constants import CATEGORY_IMAGE_URLS, CATEGORY_LABELS
+from app.constants import CATEGORY_IMAGE_FILES, CATEGORY_LABELS
 from app.extensions import db
 
 
@@ -29,11 +29,9 @@ class Issue(db.Model):
         return CATEGORY_LABELS.get(self.category, self.category.replace("_", " ").title())
 
     @property
-    def category_image_url(self) -> str:
-        return CATEGORY_IMAGE_URLS.get(
-            self.category,
-            CATEGORY_IMAGE_URLS["other"],
-        )
+    def category_static_image(self) -> str:
+        """Path under static/ for url_for('static', filename=...)."""
+        return CATEGORY_IMAGE_FILES.get(self.category, CATEGORY_IMAGE_FILES["other"])
 
     def _format_dt(self, dt: datetime | None) -> str:
         if dt is None:

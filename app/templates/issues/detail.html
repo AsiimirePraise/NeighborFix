@@ -18,7 +18,7 @@
   <div class="issue-hero">
     <img
       class="issue-hero-img"
-      src="{{ issue.category_image_url }}"
+      src="{{ url_for('static', filename=issue.category_static_image) }}"
       alt=""
       width="1600"
       height="600"
