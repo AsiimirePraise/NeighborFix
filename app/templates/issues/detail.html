@@ -15,7 +15,7 @@
       {% else %}
       <span class="badge badge-done">Resolved</span>
       {% endif %}
-      <span style="color: var(--text-muted); font-size: 0.95rem; margin-left: 0.5rem">{{ issue.category }} · {{ issue.area }}</span>
+      <span style="color: var(--text-muted); font-size: 0.95rem; margin-left: 0.5rem">{{ issue.category_display }} · {{ issue.area }}</span>
     </p>
   </div>
 </div>
@@ -24,7 +24,7 @@
   <div class="form-card" style="max-width: 40rem">
     <h2 style="margin: 0 0 0.75rem; font-size: 1rem; font-weight: 600">Description</h2>
     <p style="margin: 0; color: var(--text-muted); line-height: 1.65">{{ issue.description }}</p>
-    <p style="margin: 1.25rem 0 0; font-size: 0.85rem; color: var(--text-muted)">Last updated: {{ issue.updated }}</p>
+    <p style="margin: 1.25rem 0 0; font-size: 0.85rem; color: var(--text-muted)">Last updated: {{ issue.updated_display }}</p>
   </div>
 </div>
 {% endblock %}

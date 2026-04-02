@@ -814,6 +814,12 @@ table.issue-table {
   border-color: var(--border-strong);
 }
 
+.flash-error {
+  border-color: var(--border-strong);
+  background: #f4f4f5;
+  color: var(--text);
+}
+
 /* Layout flex column for sticky footer */
 .page {
   min-height: 100vh;

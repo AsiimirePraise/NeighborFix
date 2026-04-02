@@ -4,7 +4,7 @@
 <div class="page-head">
   <div class="wrap">
     <h1>Neighborhood reports</h1>
-    <p>Open and recently updated issues. (Sample data for UI — database in a later commit.)</p>
+    <p>Open and recently updated issues, newest first.</p>
     <div class="page-actions">
       <a class="btn btn-primary" href="{{ url_for('main.issues_new') }}">New report</a>
     </div>
@@ -30,7 +30,7 @@
         <tr>
           <td><a href="{{ url_for('main.issue_detail', issue_id=row.id) }}">#{{ row.id }}</a></td>
           <td><a href="{{ url_for('main.issue_detail', issue_id=row.id) }}">{{ row.title }}</a></td>
-          <td>{{ row.category }}</td>
+          <td>{{ row.category_display }}</td>
           <td>{{ row.area }}</td>
           <td>
             {% if row.status == 'open' %}
@@ -41,7 +41,7 @@
             <span class="badge badge-done">Resolved</span>
             {% endif %}
           </td>
-          <td>{{ row.updated }}</td>
+          <td>{{ row.updated_display }}</td>
         </tr>
         {% endfor %}
       </tbody>

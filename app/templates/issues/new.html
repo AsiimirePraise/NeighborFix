@@ -4,14 +4,14 @@
 <div class="page-head">
   <div class="wrap">
     <h1>Report an issue</h1>
-    <p>Describe what you saw and where. Submissions are stored in the database in a later step — for now this form demos the UI.</p>
+    <p>Describe what you saw and where. Reports are saved to the database.</p>
   </div>
 </div>
 
 <div class="form-page wrap">
   <form class="form-card" method="post" action="{{ url_for('main.issues_new') }}">
     <h1 style="font-size: 1.25rem">New report</h1>
-    <p class="lead">Fields map directly to what we will persist with PostgreSQL.</p>
+    <p class="lead">Required fields are stored as rows in PostgreSQL (production) or SQLite (local).</p>
 
     <div class="form-group">
       <label for="title">Short title</label>
