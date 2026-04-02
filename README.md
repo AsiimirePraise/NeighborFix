@@ -1,12 +1,14 @@
-# NeighborFix
+# NeighborFix · Uganda
 
-NeighborFix is a **neighborhood issue tracker**: residents report street problems (potholes, lighting, sanitation, safety), track status from open through resolved, and keep everything in one transparent queue—similar in spirit to professional service sites, built for reliability on **PostgreSQL** and **Railway**.
+NeighborFix is a **neighbourhood issue tracker** for **Uganda**: residents report street problems (potholes, lighting, drainage, waste), track status from open through resolved, and keep everything in one transparent queue. The UI uses a **greyscale** design (no brand accent colours) for clarity and fast loading.
+
+Default examples reference **Kampala**, **Entebbe**, **Jinja**, and other towns; you can report from any ward or district your deployment serves.
 
 ---
 
 ## Run the app and open the UI (Windows)
 
-Use **PowerShell** in the project folder (e.g. `D:\New folder\NeighborFix`).
+Use **PowerShell** in the project folder.
 
 **1. Virtual environment and dependencies**
 
@@ -24,7 +26,7 @@ $env:FLASK_APP = "wsgi:app"
 flask db upgrade
 ```
 
-**3. (Optional) Starter reports** so the list is not empty on first load:
+**3. (Optional) Starter reports**
 
 ```powershell
 flask seed
@@ -38,9 +40,7 @@ flask run
 
 **5. Open the site**
 
-In your browser go to: **http://127.0.0.1:5000/**
-
-You should see the home page, **Reports**, and **Report an issue**. Use **Ctrl+C** in the terminal to stop the server.
+**http://127.0.0.1:5000/** — times shown in the app follow **East Africa Time (EAT, UTC+3)** when you host in-region.
 
 ---
 
@@ -49,14 +49,13 @@ You should see the home page, **Reports**, and **Report an issue**. Use **Ctrl+C
 - **Backend:** Python / Flask  
 - **Database:** PostgreSQL in production (Railway); local dev uses SQLite in `instance/neighborfix.db` when `DATABASE_URL` is not set  
 - **Migrations:** Flask-Migrate (Alembic)  
-- **Deploy:** Railway + GitHub (set `SECRET_KEY` and `DATABASE_URL` in production)
 
 ### Environment variables
 
 | Variable | Purpose |
 |----------|---------|
 | `SECRET_KEY` | Required in production for sessions and flashes |
-| `DATABASE_URL` | PostgreSQL URL (Railway). Omit locally to use SQLite |
+| `DATABASE_URL` | PostgreSQL URL. Omit locally to use SQLite |
 
 Copy `.env.example` to `.env` and adjust (do not commit `.env`).
 

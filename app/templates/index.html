@@ -4,11 +4,11 @@
 <section class="hero">
   <div class="wrap hero-inner">
     <div>
-      <span class="hero-badge">Neighborhood issue tracker</span>
+      <span class="hero-badge">Uganda · neighbourhood issue tracker</span>
       <h1>Report local problems.<br />See them get fixed.</h1>
       <p class="hero-lead">
-        Potholes, broken lights, graffiti, missed trash pickup — tell your community what needs attention. Clear,
-        simple, and built for transparency.
+        Potholes, broken streetlights, blocked drains, missed waste collection, noise — tell your community what needs
+        attention. Clear, simple, and built for transparency from Kampala to regional towns.
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="{{ url_for('main.issues_new') }}">Report an issue</a>
@@ -18,9 +18,9 @@
     <aside class="hero-panel" aria-labelledby="hero-panel-title">
       <h2 id="hero-panel-title">Why use NeighborFix?</h2>
       <ul class="mini-list">
-        <li><strong>One place</strong> for reports instead of scattered calls and emails.</li>
+        <li><strong>One place</strong> for reports instead of scattered calls and messages.</li>
         <li><strong>Status you can follow</strong> from open to in progress to resolved.</li>
-        <li><strong>Your neighborhood</strong> — categories and areas that match real life.</li>
+        <li><strong>Your ward or zone</strong> — categories and areas that match how people describe places here.</li>
       </ul>
     </aside>
   </div>
@@ -30,7 +30,7 @@
   <div class="wrap stats-grid">
     <div>
       <div class="stat-value">24/7</div>
-      <div class="stat-label">Submit any time</div>
+      <div class="stat-label">Submit any time (EAT)</div>
     </div>
     <div>
       <div class="stat-value">&lt;48h</div>
@@ -42,7 +42,7 @@
     </div>
     <div>
       <div class="stat-value">Local</div>
-      <div class="stat-label">Block-by-block</div>
+      <div class="stat-label">Ward &amp; street level</div>
     </div>
   </div>
 </section>
@@ -51,48 +51,48 @@
   <div class="wrap">
     <div class="section-header">
       <h2>What you can report</h2>
-      <p>Common categories — pick the one that fits. More detail helps crews route your report faster.</p>
+      <p>Common categories — pick the one that fits. More detail helps route your report faster.</p>
     </div>
     <div class="card-grid">
       <article class="card">
         <div class="card-icon" aria-hidden="true">◎</div>
-        <h3>Streets &amp; sidewalks</h3>
-        <p>Potholes, cracks, damaged curbs, and trip hazards.</p>
+        <h3>Streets &amp; walkways</h3>
+        <p>Potholes, cracks, damaged kerbs, and trip hazards on tarmac or murram.</p>
       </article>
       <article class="card">
         <div class="card-icon" aria-hidden="true">◐</div>
         <h3>Lighting</h3>
-        <p>Streetlights out, flickering poles, dark intersections.</p>
+        <p>Streetlights out, flickering poles, dark junctions and boda stages.</p>
       </article>
       <article class="card">
         <div class="card-icon" aria-hidden="true">▦</div>
         <h3>Sanitation</h3>
-        <p>Missed pickup, overflowing bins, illegal dumping.</p>
+        <p>Missed collection, overflowing bins, illegal dumping, drainage smell.</p>
       </article>
       <article class="card">
         <div class="card-icon" aria-hidden="true">◇</div>
         <h3>Safety &amp; noise</h3>
-        <p>Graffiti, signage, after-hours noise — when it affects the block.</p>
+        <p>Signage, after-hours noise, or hazards that affect the block.</p>
       </article>
       <article class="card">
         <div class="card-icon" aria-hidden="true">▣</div>
         <h3>Parks &amp; trees</h3>
-        <p>Broken equipment, dead trees, unsafe branches.</p>
+        <p>Broken play equipment, unsafe branches, blocked paths.</p>
       </article>
       <article class="card">
         <div class="card-icon" aria-hidden="true">◫</div>
         <h3>Water &amp; drainage</h3>
-        <p>Standing water, clogged drains, hydrant issues.</p>
+        <p>Standing water, blocked culverts, burst lines, poor runoff.</p>
       </article>
       <article class="card">
         <div class="card-icon" aria-hidden="true">⚙</div>
         <h3>Traffic &amp; signs</h3>
-        <p>Missing signs, faded paint, signal problems.</p>
+        <p>Missing or faded signs, poor markings, signal problems.</p>
       </article>
       <article class="card">
         <div class="card-icon" aria-hidden="true">✎</div>
         <h3>Other</h3>
-        <p>Anything else that affects your neighborhood — describe it clearly.</p>
+        <p>Anything else that affects your neighbourhood — describe it clearly.</p>
       </article>
     </div>
   </div>
@@ -102,16 +102,18 @@
   <div class="wrap">
     <div class="section-header">
       <h2>Areas we cover</h2>
-      <p>Tag your report with a neighborhood or zone — same idea as a service area map, tuned for civic issues.</p>
+      <p>Tag your report with a ward, division, or town — examples below. Add your own area name if it is not listed.</p>
     </div>
     <div class="area-pills" role="list">
-      <span class="pill" role="listitem">Downtown</span>
-      <span class="pill" role="listitem">Riverside</span>
-      <span class="pill" role="listitem">Hill District</span>
-      <span class="pill" role="listitem">West End</span>
-      <span class="pill" role="listitem">North Park</span>
-      <span class="pill" role="listitem">Industrial corridor</span>
-      <span class="pill" role="listitem">University area</span>
+      <span class="pill" role="listitem">Kampala Central</span>
+      <span class="pill" role="listitem">Nakasero</span>
+      <span class="pill" role="listitem">Kololo</span>
+      <span class="pill" role="listitem">Bugolobi</span>
+      <span class="pill" role="listitem">Ntinda</span>
+      <span class="pill" role="listitem">Entebbe</span>
+      <span class="pill" role="listitem">Jinja</span>
+      <span class="pill" role="listitem">Mbarara</span>
+      <span class="pill" role="listitem">Gulu</span>
       <span class="pill" role="listitem">and more</span>
     </div>
   </div>
@@ -126,7 +128,7 @@
     <div class="steps">
       <article class="step">
         <h3>Submit your report</h3>
-        <p>Choose a category, add a short description and location. Photos help when you add them later.</p>
+        <p>Choose a category, add a short description and location (street, landmark, parish). Photos help when you add them later.</p>
       </article>
       <article class="step">
         <h3>We triage and assign</h3>
@@ -148,31 +150,31 @@
     </div>
     <div class="faq-list">
       <details class="faq-item">
-        <summary>Is NeighborFix run by the city?</summary>
+        <summary>Is NeighborFix run by KCCA or my district?</summary>
         <div class="faq-body">
-          It depends on who deploys NeighborFix. A city or county can run it as part of public works; a neighborhood
-          association or civic group can run it for their area. The same product supports either model.
+          It depends on who deploys NeighborFix. A city authority (for example KCCA in Kampala), a district local
+          government, or a neighbourhood association can run it. The same product supports any of those models.
         </div>
       </details>
       <details class="faq-item">
         <summary>What makes a good report?</summary>
         <div class="faq-body">
-          A specific location, one primary category, and a clear description. Avoid personal names or unrelated
-          disputes — focus on fixable infrastructure and shared spaces.
+          A specific location (street, trading centre, parish), one primary category, and a clear description. Avoid
+          personal names or unrelated disputes — focus on fixable infrastructure and shared spaces.
         </div>
       </details>
       <details class="faq-item">
         <summary>How fast will someone respond?</summary>
         <div class="faq-body">
-          Timelines depend on who operates the backend. The app is designed to show status so expectations stay
-          clear.
+          Timelines depend on who operates the service in your area. The app is designed to show status so expectations
+          stay clear.
         </div>
       </details>
       <details class="faq-item">
         <summary>Can I report emergencies here?</summary>
         <div class="faq-body">
-          No. For police, fire, or medical emergencies, call your local emergency number. This tool is for
-          non-emergency neighborhood issues.
+          No. For police, fire, or medical emergencies in Uganda, call <strong>112</strong> (national emergency line) or
+          follow local instructions from your authority. NeighborFix is for non-emergency neighbourhood issues only.
         </div>
       </details>
     </div>

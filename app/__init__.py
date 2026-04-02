@@ -49,30 +49,30 @@ def create_app() -> Flask:
             return
         starter_reports = [
             Issue(
-                title="Streetlight out — corner of Maple & 2nd",
+                title="Streetlight out near Jinja Road junction (Nakawa)",
                 category="lighting",
-                area="Riverside",
+                area="Kampala Central",
                 description=(
-                    "The pole-mounted fixture on the northeast corner has been dark for several nights. "
-                    "Pedestrian crossing is hard to see after dusk."
+                    "The pole has been dark for several nights. Pedestrians and bodas struggle to see the crossing "
+                    "after dusk."
                 ),
                 status="open",
             ),
             Issue(
-                title="Pothole widening eastbound lane",
+                title="Deep pothole on Entebbe Road lane",
                 category="streets",
-                area="Downtown",
+                area="Entebbe",
                 description=(
-                    "Roughly 12 inches across and getting deeper. Bikes swerve into traffic to avoid it."
+                    "Pothole growing wider after rain; vehicles swerve into oncoming traffic to avoid damage."
                 ),
                 status="in_progress",
             ),
             Issue(
-                title="Overflowing public bin at bus stop",
+                title="Overflowing waste bin near Old Taxi Park",
                 category="sanitation",
-                area="West End",
+                area="Nakasero",
                 description=(
-                    "Bin at stop ID 442 was full for days. Marked resolved after extra pickup scheduled."
+                    "Bin has been full for days; litter spreading onto the walkway. Resolved after extra collection run."
                 ),
                 status="resolved",
             ),

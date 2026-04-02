@@ -1,4 +1,7 @@
-/* NeighborFix — greyscale theme (inspired by clean service-site layouts) */
+/*
+ * NeighborFix — Uganda deployment
+ * Strict greyscale palette (no accent colours): professional, readable, works on low-end phones.
+ */
 :root {
   --bg: #f4f4f5;
   --surface: #ffffff;
