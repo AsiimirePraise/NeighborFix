@@ -2,10 +2,22 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 <section class="hero">
+  <div class="hero-float-layer" aria-hidden="true">
+    <div class="hero-float hero-float--1"></div>
+    <div class="hero-float hero-float--2"></div>
+    <div class="hero-float hero-float--3"></div>
+  </div>
   <div class="wrap hero-inner">
     <div>
       <span class="hero-badge">Uganda · neighbourhood issue tracker</span>
-      <h1>Report local problems.<br />See them get fixed.</h1>
+      <h1 class="hero-title" id="hero-title" aria-label="Report local problems. See them get fixed.">
+        <span class="hero-line">Report local problems.</span><br />
+        <span
+          id="hero-typewriter"
+          class="hero-typewriter"
+          data-typewriter-text="See them get fixed."
+        ></span>
+      </h1>
       <p class="hero-lead">
         Potholes, broken streetlights, blocked drains, missed waste collection, noise — tell your community what needs
         attention. Clear, simple, and built for transparency from Kampala to regional towns.
@@ -186,4 +198,10 @@
     <a class="btn btn-primary" href="{{ url_for('main.issues_new') }}">Report an issue</a>
   </div>
 </section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" crossorigin="anonymous" defer></script>
+<script src="{{ url_for('static', filename='js/home.js') }}" defer></script>
 {% endblock %}
