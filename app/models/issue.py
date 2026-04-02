@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 
 from sqlalchemy import event, func
 
-from app.constants import CATEGORY_LABELS
+from app.constants import CATEGORY_IMAGE_URLS, CATEGORY_LABELS
 from app.extensions import db
 
 
@@ -29,13 +29,26 @@ class Issue(db.Model):
         return CATEGORY_LABELS.get(self.category, self.category.replace("_", " ").title())
 
     @property
-    def updated_display(self) -> str:
-        dt = self.updated_at
+    def category_image_url(self) -> str:
+        return CATEGORY_IMAGE_URLS.get(
+            self.category,
+            CATEGORY_IMAGE_URLS["other"],
+        )
+
+    def _format_dt(self, dt: datetime | None) -> str:
         if dt is None:
             return ""
         if dt.tzinfo is None:
             dt = dt.replace(tzinfo=timezone.utc)
         return dt.strftime("%b %d, %Y")
+
+    @property
+    def created_display(self) -> str:
+        return self._format_dt(self.created_at)
+
+    @property
+    def updated_display(self) -> str:
+        return self._format_dt(self.updated_at)
 
 
 @event.listens_for(Issue, "before_update", propagate=True)

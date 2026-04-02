@@ -1,30 +1,86 @@
 {% extends "base.html" %}
 {% block title %}{{ issue.title }}{% endblock %}
 {% block content %}
-<div class="page-head">
-  <div class="wrap">
-    <p style="margin: 0 0 0.35rem; font-size: 0.85rem; color: var(--text-muted)">
-      <a href="{{ url_for('main.issues_list') }}">Reports</a> / #{{ issue.id }}
-    </p>
-    <h1>{{ issue.title }}</h1>
+{% if just_saved %}
+<div class="saved-banner wrap">
+  <div class="saved-banner-inner">
     <p>
-      {% if issue.status == 'open' %}
-      <span class="badge badge-open">Open</span>
-      {% elif issue.status == 'in_progress' %}
-      <span class="badge badge-progress">In progress</span>
-      {% else %}
-      <span class="badge badge-done">Resolved</span>
-      {% endif %}
-      <span style="color: var(--text-muted); font-size: 0.95rem; margin-left: 0.5rem">{{ issue.category_display }} · {{ issue.area }}</span>
+      <strong>Saved.</strong> This report is stored in the database (table <code>issues</code>, row ID
+      <strong>#{{ issue.id }}</strong>). Find it anytime under
+      <a href="{{ url_for('main.issues_list') }}">Reports</a>.
     </p>
+    <a class="btn btn-secondary btn-sm" href="{{ url_for('main.issues_list') }}">Open all reports</a>
   </div>
 </div>
+{% endif %}
 
-<div class="wrap form-page">
-  <div class="form-card" style="max-width: 40rem">
-    <h2 style="margin: 0 0 0.75rem; font-size: 1rem; font-weight: 600">Description</h2>
-    <p style="margin: 0; color: var(--text-muted); line-height: 1.65">{{ issue.description }}</p>
-    <p style="margin: 1.25rem 0 0; font-size: 0.85rem; color: var(--text-muted)">Last updated: {{ issue.updated_display }}</p>
+<article class="issue-detail">
+  <div class="issue-hero">
+    <img
+      class="issue-hero-img"
+      src="{{ issue.category_image_url }}"
+      alt=""
+      width="1600"
+      height="600"
+      loading="eager"
+      decoding="async"
+    />
+    <div class="issue-hero-overlay"></div>
+    <div class="wrap issue-hero-content">
+      <nav class="issue-breadcrumb" aria-label="Breadcrumb">
+        <a href="{{ url_for('main.issues_list') }}">Reports</a>
+        <span class="issue-breadcrumb-sep" aria-hidden="true">/</span>
+        <span>#{{ issue.id }}</span>
+      </nav>
+      <h1 class="issue-hero-title">{{ issue.title }}</h1>
+      <div class="issue-hero-meta">
+        {% if issue.status == 'open' %}
+        <span class="badge badge-open">Open</span>
+        {% elif issue.status == 'in_progress' %}
+        <span class="badge badge-progress">In progress</span>
+        {% else %}
+        <span class="badge badge-done">Resolved</span>
+        {% endif %}
+        <span class="issue-hero-cat">{{ issue.category_display }}</span>
+        <span class="issue-hero-area">{{ issue.area }}</span>
+      </div>
+    </div>
   </div>
-</div>
+
+  <div class="wrap issue-detail-body">
+    <aside class="issue-meta-card" aria-label="Report metadata">
+      <h2 class="issue-meta-heading">Report details</h2>
+      <dl class="issue-meta-list">
+        <div>
+          <dt>Report ID</dt>
+          <dd>#{{ issue.id }}</dd>
+        </div>
+        <div>
+          <dt>Category</dt>
+          <dd>{{ issue.category_display }}</dd>
+        </div>
+        <div>
+          <dt>Area</dt>
+          <dd>{{ issue.area }}</dd>
+        </div>
+        <div>
+          <dt>Created</dt>
+          <dd>{{ issue.created_display }}</dd>
+        </div>
+        <div>
+          <dt>Last updated</dt>
+          <dd>{{ issue.updated_display }}</dd>
+        </div>
+      </dl>
+      <p class="issue-meta-note">
+        Data is read from your database — same row as in the
+        <a href="{{ url_for('main.issues_list') }}">reports list</a>.
+      </p>
+    </aside>
+    <div class="issue-description-card">
+      <h2 class="issue-description-heading">Description</h2>
+      <div class="issue-description-text">{{ issue.description }}</div>
+    </div>
+  </div>
+</article>
 {% endblock %}

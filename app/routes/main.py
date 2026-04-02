@@ -44,8 +44,7 @@ def issues_new():
         )
         db.session.add(issue)
         db.session.commit()
-        flash("Your report was saved.", "info")
-        return redirect(url_for("main.issue_detail", issue_id=issue.id))
+        return redirect(url_for("main.issue_detail", issue_id=issue.id, saved=1))
     return render_template("issues/new.html")
 
 
@@ -54,4 +53,8 @@ def issue_detail(issue_id: int):
     issue = db.session.get(Issue, issue_id)
     if issue is None:
         abort(404)
-    return render_template("issues/detail.html", issue=issue)
+    return render_template(
+        "issues/detail.html",
+        issue=issue,
+        just_saved=request.args.get("saved") == "1",
+    )

@@ -18,7 +18,38 @@
     window.setTimeout(tick, 400);
   }
 
+  function initSplash() {
+    var splash = document.getElementById("splash-screen");
+    if (!splash) {
+      return;
+    }
+    if (sessionStorage.getItem("nf_splash_ok")) {
+      splash.remove();
+      return;
+    }
+    splash.removeAttribute("hidden");
+    document.body.style.overflow = "hidden";
+    var btn = document.getElementById("splash-dismiss");
+    if (btn) {
+      btn.focus();
+    }
+    function close() {
+      sessionStorage.setItem("nf_splash_ok", "1");
+      document.body.style.overflow = "";
+      splash.remove();
+    }
+    if (btn) {
+      btn.addEventListener("click", close);
+    }
+    splash.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        close();
+      }
+    });
+  }
+
   function init() {
+    initSplash();
     var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var tw = document.getElementById("hero-typewriter");
     var phrase = (tw && tw.getAttribute("data-typewriter-text")) || "";

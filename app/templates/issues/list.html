@@ -3,12 +3,18 @@
 {% block content %}
 <div class="page-head">
   <div class="wrap">
-    <h1>Neighborhood reports</h1>
-    <p>Open and recently updated issues across Uganda, newest first.</p>
+    <h1>Neighbourhood reports</h1>
+    <p>Open and recently updated issues across Uganda, newest first. Each row is a record in your <strong>issues</strong> database table.</p>
     <div class="page-actions">
       <a class="btn btn-primary" href="{{ url_for('main.issues_new') }}">New report</a>
     </div>
   </div>
+</div>
+
+<div class="wrap list-hint">
+  <p class="list-hint-text">
+    After you submit a report, you land on its detail page. Use <strong>Reports</strong> in the menu anytime to see everything saved.
+  </p>
 </div>
 
 <div class="wrap" style="padding-bottom: 3rem">
