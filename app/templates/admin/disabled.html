@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Staff dashboard{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div class="wrap">
+    <h1>Staff dashboard</h1>
+  </div>
+</div>
+<div class="wrap form-page">
+  <div class="form-card" style="max-width: 36rem">
+    <p style="margin: 0 0 0.75rem">{{ message }}</p>
+    <p style="margin: 0; font-size: 0.9rem; color: var(--text-muted)">
+      Example: <code>ADMIN_PASSWORD=your-secret</code> in <code>.env</code>, then restart <code>flask run</code>.
+    </p>
+  </div>
+</div>
+{% endblock %}

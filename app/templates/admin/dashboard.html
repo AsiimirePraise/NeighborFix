@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Staff · reports{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div class="wrap">
+    <h1>Triage reports</h1>
+    <p>
+      Updates the <strong>status</strong> column on each row in <code>issues</code> (open, in progress, resolved). Public
+      pages read the same database.
+    </p>
+    <div class="page-actions">
+      <a class="btn btn-secondary" href="{{ url_for('main.issues_list') }}">View public list</a>
+      <form method="post" action="{{ url_for('admin.logout') }}" style="display: inline">
+        <button type="submit" class="btn btn-secondary">Sign out</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="wrap" style="padding-bottom: 3rem">
+  {% if not issues %}
+  <p class="list-hint-text">No reports yet.</p>
+  {% else %}
+  <div class="admin-table-wrap issue-table-wrap">
+    <table class="issue-table admin-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Area</th>
+          <th>Status</th>
+          <th>Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in issues %}
+        <tr>
+          <td>#{{ row.id }}</td>
+          <td><a href="{{ url_for('main.issue_detail', issue_id=row.id) }}">{{ row.title }}</a></td>
+          <td>{{ row.area }}</td>
+          <td>
+            <form
+              method="post"
+              action="{{ url_for('admin.issue_status', issue_id=row.id) }}"
+              class="admin-status-form"
+            >
+              <label class="sr-only" for="status-{{ row.id }}">Status for report {{ row.id }}</label>
+              <select id="status-{{ row.id }}" name="status" class="admin-status-select">
+                <option value="open" {% if row.status == 'open' %}selected{% endif %}>Open</option>
+                <option value="in_progress" {% if row.status == 'in_progress' %}selected{% endif %}>In progress</option>
+                <option value="resolved" {% if row.status == 'resolved' %}selected{% endif %}>Resolved</option>
+              </select>
+              <button type="submit" class="btn btn-sm btn-primary">Save</button>
+            </form>
+          </td>
+          <td>{{ row.updated_display }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

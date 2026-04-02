@@ -1283,3 +1283,31 @@ table.issue-table {
     filter: grayscale(1);
   }
 }
+
+/* Admin dashboard */
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-status-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-status-select {
+  min-width: 9.5rem;
+  padding: 0.4rem 0.55rem;
+  font: inherit;
+  font-size: 0.88rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.admin-status-select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}

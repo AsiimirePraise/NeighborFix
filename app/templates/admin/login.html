@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Staff login{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div class="wrap">
+    <h1>Staff dashboard</h1>
+    <p>Sign in to update report status (stored in the <code>issues</code> table).</p>
+  </div>
+</div>
+<div class="form-page wrap">
+  <form class="form-card" method="post" action="{{ url_for('admin.login') }}" style="max-width: 22rem">
+    {% if request.args.get('next') %}
+    <input type="hidden" name="next" value="{{ request.args.get('next') }}" />
+    {% endif %}
+    <h2 style="margin: 0 0 1rem; font-size: 1.1rem">Password</h2>
+    {% if error %}
+    <p class="form-hint" style="color: var(--text); margin-bottom: 1rem">{{ error }}</p>
+    {% endif %}
+    <div class="form-group">
+      <label for="password">Admin password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required />
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+    <p class="form-hint" style="margin-top: 1rem">Set <code>ADMIN_PASSWORD</code> in <code>.env</code> (same machine as the database).</p>
+  </form>
+</div>
+{% endblock %}

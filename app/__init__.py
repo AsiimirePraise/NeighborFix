@@ -31,17 +31,18 @@ def create_app() -> Flask:
     migrate.init_app(app, db)
 
     from app import models  # noqa: F401 — register models with SQLAlchemy
+    from app.routes.admin import bp as admin_bp
     from app.routes.main import bp as main_bp
 
     app.register_blueprint(main_bp)
+    app.register_blueprint(admin_bp)
 
     @app.errorhandler(404)
     def not_found(_e):
         return render_template("errors/404.html"), 404
 
-    @app.cli.command("seed")
-    def seed() -> None:
-        """Load starter reports when the database is empty (optional; dev or staging)."""
+    def _seed_issues() -> None:
+        """Insert starter rows into `issues` when the table is empty."""
         from app.models.issue import Issue
 
         if Issue.query.count() > 0:
@@ -80,5 +81,16 @@ def create_app() -> Flask:
         db.session.add_all(starter_reports)
         db.session.commit()
         click.echo("Starter reports added successfully (3).")
+
+    @app.cli.command("seed")
+    def seed_command() -> None:
+        """Load starter reports when the database is empty (optional; dev or staging)."""
+        _seed_issues()
+
+    @app.cli.command("seed-demo")
+    def seed_demo_command() -> None:
+        """Same as `flask seed` (kept for older notes that still say seed-demo)."""
+        click.echo("Using flask seed — same command.")
+        _seed_issues()
 
     return app

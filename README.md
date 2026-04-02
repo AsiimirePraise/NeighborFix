@@ -1,6 +1,6 @@
 # NeighborFix · Uganda
 
-NeighborFix is a **neighbourhood issue tracker** for **Uganda**: residents report street problems (potholes, lighting, drainage, waste), track status from open through resolved, and keep everything in one transparent queue. The UI uses a **greyscale** design (no brand accent colours) for clarity and fast loading.
+NeighborFix is a **neighbourhood issue tracker** for **Uganda**: residents report street problems (potholes, lighting, drainage, waste), track status from open through resolved, and keep everything in one transparent queue. The UI is **greyscale-first** with a single **accent** colour for actions and focus.
 
 Default examples reference **Kampala**, **Entebbe**, **Jinja**, and other towns; you can report from any ward or district your deployment serves.
 
@@ -26,21 +26,33 @@ $env:FLASK_APP = "wsgi:app"
 flask db upgrade
 ```
 
-**3. (Optional) Starter reports**
+**3. (Optional) Starter rows in `issues`**
+
+Use `flask seed` (or the older alias `flask seed-demo` — same behaviour):
 
 ```powershell
 flask seed
 ```
 
-**4. Start the server**
+**4. Staff dashboard (triage: open / in progress / resolved)**
+
+Set a password in `.env`, then restart the server:
+
+```env
+ADMIN_PASSWORD=your-long-secret-here
+```
+
+Open **http://127.0.0.1:5000/admin** and sign in. Changes update the existing **`issues.status`** column in the database (no extra migration needed for status).
+
+**5. Start the server**
 
 ```powershell
 flask run
 ```
 
-**5. Open the site**
+**6. Open the site**
 
-**http://127.0.0.1:5000/** — times shown in the app follow **East Africa Time (EAT, UTC+3)** when you host in-region.
+**http://127.0.0.1:5000/** — times follow **East Africa Time (EAT, UTC+3)** when you host in-region.
 
 ---
 
@@ -56,8 +68,21 @@ flask run
 |----------|---------|
 | `SECRET_KEY` | Required in production for sessions and flashes |
 | `DATABASE_URL` | PostgreSQL URL. Omit locally to use SQLite |
+| `ADMIN_PASSWORD` | Enables **/admin** staff dashboard (updates `issues.status`) |
 
 Copy `.env.example` to `.env` and adjust (do not commit `.env`).
+
+---
+
+## Troubleshooting
+
+### `Could not find platform independent libraries <prefix>`
+
+Windows can show this when the active `python` is not the venv interpreter. Activate `.venv` first, then use `python` and `flask` from that environment. If it persists, recreate the venv: remove `.venv`, run `python -m venv .venv`, then `pip install -r requirements.txt`.
+
+### `Error: No such command 'seed-demo'`
+
+Use **`flask seed`**. If you still use `seed-demo`, it is registered again as an alias of `seed` in this project.
 
 ---
 
