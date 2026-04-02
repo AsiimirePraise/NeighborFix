@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Report an issue{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div class="wrap">
+    <h1>Report an issue</h1>
+    <p>Describe what you saw and where. Submissions are stored in the database in a later step — for now this form demos the UI.</p>
+  </div>
+</div>
+
+<div class="form-page wrap">
+  <form class="form-card" method="post" action="{{ url_for('main.issues_new') }}">
+    <h1 style="font-size: 1.25rem">New report</h1>
+    <p class="lead">Fields map directly to what we will persist with PostgreSQL.</p>
+
+    <div class="form-group">
+      <label for="title">Short title</label>
+      <input id="title" name="title" type="text" required maxlength="120" placeholder="e.g. Pothole on Oak near 4th" autocomplete="off" />
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        <option value="" disabled selected>Select a category</option>
+        <option value="streets">Streets &amp; sidewalks</option>
+        <option value="lighting">Lighting</option>
+        <option value="sanitation">Sanitation</option>
+        <option value="safety">Safety &amp; noise</option>
+        <option value="parks">Parks &amp; trees</option>
+        <option value="water">Water &amp; drainage</option>
+        <option value="traffic">Traffic &amp; signs</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="area">Area / neighborhood</label>
+      <input id="area" name="area" type="text" required maxlength="80" placeholder="e.g. Riverside" autocomplete="off" />
+      <p class="form-hint">Helps route the report to the right zone.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" required maxlength="2000" placeholder="What did you observe? Any landmarks or cross streets?"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Submit report</button>
+  </form>
+</div>
+{% endblock %}

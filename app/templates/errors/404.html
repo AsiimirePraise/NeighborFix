@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Not found{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div class="wrap">
+    <h1>Page not found</h1>
+    <p>That report or URL does not exist.</p>
+    <div class="page-actions">
+      <a class="btn btn-primary" href="{{ url_for('main.index') }}">Home</a>
+      <a class="btn btn-secondary" href="{{ url_for('main.issues_list') }}">All reports</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

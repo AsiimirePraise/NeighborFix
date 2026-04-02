@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <span class="hero-badge">Neighborhood issue tracker</span>
+      <h1>Report local problems.<br />See them get fixed.</h1>
+      <p class="hero-lead">
+        Potholes, broken lights, graffiti, missed trash pickup — tell your community what needs attention. Clear,
+        simple, and built for transparency.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{{ url_for('main.issues_new') }}">Report an issue</a>
+        <a class="btn btn-secondary" href="{{ url_for('main.issues_list') }}">Browse reports</a>
+      </div>
+    </div>
+    <aside class="hero-panel" aria-labelledby="hero-panel-title">
+      <h2 id="hero-panel-title">Why use NeighborFix?</h2>
+      <ul class="mini-list">
+        <li><strong>One place</strong> for reports instead of scattered calls and emails.</li>
+        <li><strong>Status you can follow</strong> from open to in progress to resolved.</li>
+        <li><strong>Your neighborhood</strong> — categories and areas that match real life.</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div>
+      <div class="stat-value">24/7</div>
+      <div class="stat-label">Submit any time</div>
+    </div>
+    <div>
+      <div class="stat-value">&lt;48h</div>
+      <div class="stat-label">Typical first response</div>
+    </div>
+    <div>
+      <div class="stat-value">100%</div>
+      <div class="stat-label">Transparent status</div>
+    </div>
+    <div>
+      <div class="stat-value">Local</div>
+      <div class="stat-label">Block-by-block</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-header">
+      <h2>What you can report</h2>
+      <p>Common categories — pick the one that fits. More detail helps crews route your report faster.</p>
+    </div>
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">◎</div>
+        <h3>Streets &amp; sidewalks</h3>
+        <p>Potholes, cracks, damaged curbs, and trip hazards.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">◐</div>
+        <h3>Lighting</h3>
+        <p>Streetlights out, flickering poles, dark intersections.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">▦</div>
+        <h3>Sanitation</h3>
+        <p>Missed pickup, overflowing bins, illegal dumping.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">◇</div>
+        <h3>Safety &amp; noise</h3>
+        <p>Graffiti, signage, after-hours noise — when it affects the block.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">▣</div>
+        <h3>Parks &amp; trees</h3>
+        <p>Broken equipment, dead trees, unsafe branches.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">◫</div>
+        <h3>Water &amp; drainage</h3>
+        <p>Standing water, clogged drains, hydrant issues.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">⚙</div>
+        <h3>Traffic &amp; signs</h3>
+        <p>Missing signs, faded paint, signal problems.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">✎</div>
+        <h3>Other</h3>
+        <p>Anything else that affects your neighborhood — describe it clearly.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section areas">
+  <div class="wrap">
+    <div class="section-header">
+      <h2>Areas we cover</h2>
+      <p>Tag your report with a neighborhood or zone — same idea as a service area map, tuned for civic issues.</p>
+    </div>
+    <div class="area-pills" role="list">
+      <span class="pill" role="listitem">Downtown</span>
+      <span class="pill" role="listitem">Riverside</span>
+      <span class="pill" role="listitem">Hill District</span>
+      <span class="pill" role="listitem">West End</span>
+      <span class="pill" role="listitem">North Park</span>
+      <span class="pill" role="listitem">Industrial corridor</span>
+      <span class="pill" role="listitem">University area</span>
+      <span class="pill" role="listitem">and more</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-header">
+      <h2>How it works</h2>
+      <p>Simple steps — no jargon. You stay in the loop from report to resolution.</p>
+    </div>
+    <div class="steps">
+      <article class="step">
+        <h3>Submit your report</h3>
+        <p>Choose a category, add a short description and location. Photos help when you add them later.</p>
+      </article>
+      <article class="step">
+        <h3>We triage and assign</h3>
+        <p>Your report gets a status: open, in progress, or resolved. Duplicate issues may be merged.</p>
+      </article>
+      <article class="step">
+        <h3>You see the outcome</h3>
+        <p>Check back on the reports list for updates. Transparency is the point.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-header">
+      <h2>Frequently asked questions</h2>
+      <p>Quick answers — same spirit as a service FAQ, without the sales pitch.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Is NeighborFix run by the city?</summary>
+        <div class="faq-body">
+          This demo app is for coursework. A real deployment might integrate with municipal workflows or stay
+          community-run — the UI is built to work either way.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>What makes a good report?</summary>
+        <div class="faq-body">
+          A specific location, one primary category, and a clear description. Avoid personal names or unrelated
+          disputes — focus on fixable infrastructure and shared spaces.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How fast will someone respond?</summary>
+        <div class="faq-body">
+          Timelines depend on who operates the backend. The app is designed to show status so expectations stay
+          clear.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I report emergencies here?</summary>
+        <div class="faq-body">
+          No. For police, fire, or medical emergencies, call your local emergency number. This tool is for
+          non-emergency neighborhood issues.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0">
+  <div class="wrap" style="text-align: center">
+    <a class="btn btn-primary" href="{{ url_for('main.issues_new') }}">Report an issue</a>
+  </div>
+</section>
+{% endblock %}
