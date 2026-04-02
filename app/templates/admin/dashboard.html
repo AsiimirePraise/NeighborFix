@@ -5,8 +5,8 @@
   <div class="wrap">
     <h1>Triage reports</h1>
     <p>
-      Updates the <strong>status</strong> column on each row in <code>issues</code> (open, in progress, resolved). Public
-      pages read the same database.
+      Signed in as <strong>{{ staff_name or "staff" }}</strong>. Updates the <strong>status</strong> column on each row
+      in <code>issues</code> (open, in progress, resolved). Public pages read the same database.
     </p>
     <div class="page-actions">
       <a class="btn btn-secondary" href="{{ url_for('main.issues_list') }}">View public list</a>

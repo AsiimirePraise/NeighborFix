@@ -82,15 +82,39 @@ def create_app() -> Flask:
         db.session.commit()
         click.echo("Starter reports added successfully (3).")
 
+    def _seed_admins() -> None:
+        """Create default staff users in `admin_users` when empty."""
+        from app.models.admin_user import AdminUser
+
+        if AdminUser.query.count() > 0:
+            return
+        accounts = [
+            ("asiimire", "1234"),
+            ("Pearl", "1234"),
+        ]
+        for username, raw in accounts:
+            u = AdminUser(username=username, password_hash="pending")
+            u.set_password(raw)
+            db.session.add(u)
+        db.session.commit()
+        click.echo("Staff users created: asiimire, Pearl (password 1234 each - change in production).")
+
     @app.cli.command("seed")
     def seed_command() -> None:
-        """Load starter reports when the database is empty (optional; dev or staging)."""
+        """Load starter issues and staff accounts when tables are empty."""
         _seed_issues()
+        _seed_admins()
 
     @app.cli.command("seed-demo")
     def seed_demo_command() -> None:
         """Same as `flask seed` (kept for older notes that still say seed-demo)."""
         click.echo("Using flask seed — same command.")
         _seed_issues()
+        _seed_admins()
+
+    @app.cli.command("seed-admins")
+    def seed_admins_command() -> None:
+        """Only ensure default staff users exist (requires admin_users migration)."""
+        _seed_admins()
 
     return app

@@ -19,40 +19,38 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-**2. Database (creates `instance\neighborfix.db` with SQLite)**
+**2. Database migrations**
 
 ```powershell
 $env:FLASK_APP = "wsgi:app"
 flask db upgrade
 ```
 
-**3. (Optional) Starter rows in `issues`**
+**3. Optional seed data**
 
-Use `flask seed` (or the older alias `flask seed-demo` — same behaviour):
+- **`flask seed`** — sample **issues** plus default **staff** users (if tables are empty).
+- **`flask seed-admins`** — only default staff users in **`admin_users`** (if empty).
 
 ```powershell
 flask seed
 ```
 
-**4. Staff dashboard (triage: open / in progress / resolved)**
+Default staff logins (hashed in the database): **asiimire** and **Pearl**, password **1234** each. Change these in production.
 
-Set a password in `.env`, then restart the server:
-
-```env
-ADMIN_PASSWORD=your-long-secret-here
-```
-
-Open **http://127.0.0.1:5000/admin** and sign in. Changes update the existing **`issues.status`** column in the database (no extra migration needed for status).
-
-**5. Start the server**
+**4. Start the server**
 
 ```powershell
 flask run
 ```
 
-**6. Open the site**
+**5. URLs**
 
-**http://127.0.0.1:5000/** — times follow **East Africa Time (EAT, UTC+3)** when you host in-region.
+| URL | Purpose |
+|-----|---------|
+| **http://127.0.0.1:5000/** | Home (fixed Unsplash background; text stays readable while scrolling) |
+| **http://127.0.0.1:5000/admin** | Staff dashboard — sign in, then update **issues.status** |
+
+If **/admin** returned 404 before, pull latest code, run **`flask db upgrade`**, then **`flask seed-admins`**, and use **`http://127.0.0.1:5000/admin`** (with or without a trailing slash).
 
 ---
 
@@ -61,14 +59,14 @@ flask run
 - **Backend:** Python / Flask  
 - **Database:** PostgreSQL in production (Railway); local dev uses SQLite in `instance/neighborfix.db` when `DATABASE_URL` is not set  
 - **Migrations:** Flask-Migrate (Alembic)  
+- **Staff auth:** `admin_users` table (username + password hash), not environment passwords  
 
 ### Environment variables
 
 | Variable | Purpose |
 |----------|---------|
-| `SECRET_KEY` | Required in production for sessions and flashes |
+| `SECRET_KEY` | Required in production for sessions |
 | `DATABASE_URL` | PostgreSQL URL. Omit locally to use SQLite |
-| `ADMIN_PASSWORD` | Enables **/admin** staff dashboard (updates `issues.status`) |
 
 Copy `.env.example` to `.env` and adjust (do not commit `.env`).
 
@@ -78,11 +76,11 @@ Copy `.env.example` to `.env` and adjust (do not commit `.env`).
 
 ### `Could not find platform independent libraries <prefix>`
 
-Windows can show this when the active `python` is not the venv interpreter. Activate `.venv` first, then use `python` and `flask` from that environment. If it persists, recreate the venv: remove `.venv`, run `python -m venv .venv`, then `pip install -r requirements.txt`.
+Activate `.venv` first, then use `python` and `flask` from that environment. If it persists, recreate the venv.
 
 ### `Error: No such command 'seed-demo'`
 
-Use **`flask seed`**. If you still use `seed-demo`, it is registered again as an alias of `seed` in this project.
+Use **`flask seed`**. **`flask seed-demo`** is kept as an alias.
 
 ---
 
